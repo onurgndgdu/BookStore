@@ -11,5 +11,6 @@ public class AuthorResources extends EntityModel<Author> {
     public AuthorResources(Author author, Link... links){
         super(author, List.of(links));
         add(Link.of("/authors/"+author.getId()+"/books","author-books"));
+        add(Link.of("/authors/"+author.getId()+"/add-book","add-book"));
     }
 }
