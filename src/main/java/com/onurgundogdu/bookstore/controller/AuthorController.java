@@ -1,9 +1,11 @@
 package com.onurgundogdu.bookstore.controller;
 
+import com.onurgundogdu.bookstore.dto.AuthorDto;
 import com.onurgundogdu.bookstore.exception.NotFoundException;
 import com.onurgundogdu.bookstore.model.Author;
 import com.onurgundogdu.bookstore.repository.AuthorRepository;
 import com.onurgundogdu.bookstore.resource.AuthorResources;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +41,10 @@ public class AuthorController {
     }
 
     private AuthorResources createAuthorModelWithLinks(Author author){
+        AuthorDto authorDto = new AuthorDto();
+        BeanUtils.copyProperties(author,authorDto);
         Link selfLink = Link.of("/authors/"+author.getId());
-        return new AuthorResources(author,selfLink);
+        Link addBookLink = Link.of("/authors/"+author.getId()+"/add-book","add-book");
+        return new AuthorResources(author, selfLink,addBookLink);
     }
 }

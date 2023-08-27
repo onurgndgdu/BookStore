@@ -1,5 +1,6 @@
 package com.onurgundogdu.bookstore.resource;
 
+import com.onurgundogdu.bookstore.dto.AuthorDto;
 import com.onurgundogdu.bookstore.model.Author;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
